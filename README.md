@@ -1,4 +1,4 @@
-# Preptime API
+# Preptime Analytics
 
 Frontend React application for the Preptime Analyzer.
 
