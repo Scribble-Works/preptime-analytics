@@ -1,11 +1,90 @@
-# Getting Started with Create React App
+# Preptime API
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Node.js/Express app that serves as a backend for the preptime analyzer web application.
+
+## Getting Started
+
+This repository contains the resources and instructions that will get you a copy of the project up and running on your local machine for development and testing purposes, and also with notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+To get the project started, there are some tools you need to install on your local machine. The list of tools you need to install have been provided with a guide on how to install these tools.
+
+##### `Install git`
+
+For users on Mac, the best way to install git is by using [Homebrew](https://brew.sh/). To install Homebrew, open your shell and run the following command:
+
+```
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+After the command is done running, check if Homebrew is successfully installed by running:
+
+```
+$ brew --version
+```
+
+If Homebrew is successfully installed, the version will be logged to the screen. Now proceed to install git using Homebrew with the following command:
+
+```
+$ brew install git
+```
+
+For users on Windows, download the [latest version](https://git-scm.com/downloads) of Git and choose the 64/32 bit version. After the file is downloaded, install it in the system. Once installed, select Launch the Git Bash, then click on finish. After that, check for a successful installation by opening your terminal and logging the version of git with:
+
+```
+$ git --version
+```
+
+##### `Install Node.js`
+
+For users on Mac, install Node.js with Homebrew using the following command:
+
+```
+$ brew update
+$ brew install node
+```
+
+For users on Windows, download and install the [Node.js](https://nodejs.org/en/download/) .msi installer. Follow the guide on the installer and node.js should be installed successfully on your local machine. After that, check for a successful installation by logging the version of Node.js with:
+
+```
+$ node --version
+```
+
+### Installation
+
+Now that you have installed the tools required to start the project locally, we provide a step by step series of examples that tell you how to get a development environment running. Before you can get the dev environment running, you need to download the project resources (files) from the github repository using git (which you installed earlier). To do this, you simply need to run the following command:
+
+```
+$ git clone https://github.com/Scribble-Works/preptime-analytics.git
+```
+
+After git is done cloning the project repository, move into the project folder and install the dependencies:
+
+```
+$ cd preptime-analytics
+$ npm install -g yarn    // project uses yarn
+$ yarn install        // or simply "yarn"
+```
+
+You will then have to create your environment variables in a .env file with the following variables:
+
+* REACT_APP_STRAPI_BASE_URI - URL for the CMS (https://admin.preptimeanalytics.com).
+* REACT_APP_GOOGLE_API_KEY - Your Google API Key
+* REACT_APP_GOOGLE_CLIENT_ID - Your Google client_id
+* REACT_APP_SCRIPT_URL - Your Google Script deployment URL
+* REACT_APP_API_URL - Base URL for the API endpoints (this refers to the deployed preptime [backend application](https://github.com/Scribble-Works/preptime-api).)
+
+Now start the development server with the following command:
+
+```
+$ yarn start
+```
 
 ## Available Scripts
 In the project directory, you can run:
 
-### `npm start`
+##### `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -13,12 +92,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+#### `yarn test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+##### `yarn build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -28,42 +107,30 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Deployment
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The original project is deployed and hosted on Amazon Web Service. But developers are encouraged to deploy or host it on any other service they prefer. The recommended method for building this project for production is by using Docker.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Built With
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* [React](https://expressjs.com/) - The frontend framework used
+* [MongoDB](https://www.mongodb.com/docs/manual/tutorial/getting-started/) - Database Management
+* [Yarn](https://yarnpkg.com/) - Dependencies and package management
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Contributing
 
-## Learn More
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Versioning
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+We use [git](https://git-scm.com/) for versioning. For the versions available, see the [tags on this repository](https://github.com/Scribble-Works/project/tags). 
 
-### Code Splitting
+## Authors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* **Scribble Works** - *Initial work* - [Scribble Works](https://github.com/Scribble-Works)
 
-### Analyzing the Bundle Size
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## License
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
