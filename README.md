@@ -140,7 +140,7 @@ We use [git](https://git-scm.com/) for versioning. For the versions available, s
 
 * **Scribble Works** - *Initial work* - [Scribble Works](https://github.com/Scribble-Works)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Scribble-Works/preptime-analytics/graphs/contributors) who participated in this project.
 
 ## License
 
