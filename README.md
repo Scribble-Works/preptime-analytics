@@ -1,12 +1,24 @@
 # Preptime API
 
-Node.js/Express app that serves as a backend for the preptime analyzer web application.
+Frontend React application for the Preptime Analyzer.
 
 ## Getting Started
 
 This repository contains the resources and instructions that will get you a copy of the project up and running on your local machine for development and testing purposes, and also with notes on how to deploy the project on a live system.
 
 ### Prerequisites
+
+This project uses Google APIs and therefore requires you to create a project on Google Cloud Platform (assuming you already have a google account and you're signed in). See the [documentation](https://cloud.google.com/resource-manager/docs/creating-managing-projects) on how to create a Google Cloud Project. After creating the Google Cloud project, navigate to the APIs & Services page and enable the following APIs;
+
+* Apps Script API
+* Gmail API
+* Google Drive API
+* Google Forms API
+* Google Sheets API
+
+A step by step guide on how to enable Google APIs can be found [here](https://support.google.com/googleapi/answer/6158841?hl=en). The next thing to do now is to create your access credentials which are; API Keys, OAuth client ID, and a Service account. On the same APIs & Services page, click on "Credentials" on the sidebar menu on the left. This serves you a page where you can create new credentials by clicking on the "Create Credentials" button on the top left of the page. You can see the guide on how to create these credentials [here](https://developers.google.com/workspace/guides/create-credentials).
+
+In addition to that, you will also need to create a new [Google App Script project](https://script.google.com) and copy the code in this [App script project](https://script.google.com/home/projects/1QShlUGMc11-f3q_ADp00WRILV4XEyV9YgB1FFIC_ZV1RNLy98_uMtqxD/edit) which is used by the original Preptime project. Link your Google cloud project to the App script project by following this [guide](https://developers.google.com/apps-script/guides/cloud-platform-projects).
 
 To get the project started, there are some tools you need to install on your local machine. The list of tools you need to install have been provided with a guide on how to install these tools.
 
@@ -113,8 +125,7 @@ The original project is deployed and hosted on Amazon Web Service. But developer
 
 ## Built With
 
-* [React](https://expressjs.com/) - The frontend framework used
-* [MongoDB](https://www.mongodb.com/docs/manual/tutorial/getting-started/) - Database Management
+* [React](https://reactjs.org/) - The frontend framework used
 * [Yarn](https://yarnpkg.com/) - Dependencies and package management
 
 ## Contributing
