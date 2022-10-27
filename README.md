@@ -130,7 +130,7 @@ The original project is deployed and hosted on Amazon Web Service. But developer
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/Scribble-Works/preptime-analytics/blob/main/Contributing.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
