@@ -4,6 +4,8 @@ import moment from 'moment';
 import axios from 'axios';
 import Table from '../components/Table';
 import Loader from '../components/Loader'
+import logo from '../assets/logos/PrepTime_analyser_logo.png';
+import { reportStyles } from '../context/styles';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -15,6 +17,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import printJS from 'print-js';
 
 ChartJS.register(
     CategoryScale,
@@ -68,7 +71,16 @@ export default function Analysis() {
             { text: "Item Difficulty (%)", accessor: "itemDifficulty" },
             { text: "Discrimination", accessor: "discrimination" }
         ]
-    })
+    });
+
+    const printOptions = {
+        printable: document.getElementById('printableDoc'),
+        type: 'html',
+        maxWidth: 1000,
+        style: reportStyles,
+        onPrintDialogClose: _ => setPrintState('done'),
+        honorMarginPadding: false
+    };
     
     useEffect(_ => {
         ;(async _ => {
@@ -296,11 +308,17 @@ export default function Analysis() {
     }, [questions, responses])
 
     const printReport = _ => {
-        setPrintState('printing');
-        // setTimeout(_ => {
-        //     setPrintState('done')
-        // }, 3000)
+        alert('Cannot print report now!')
+        // setPrintState('printing');
     };
+
+    useEffect(_ => {
+        if (printState === 'printing') {
+            setTimeout(_ => {
+                printJS(printOptions)
+            }, 500)
+        }
+    }, [printState])
 
     const chartOptions = {
         scales:  {
@@ -345,79 +363,97 @@ export default function Analysis() {
                         </a>
                     </div>
                 </header>
-                {
-                    responses.length > 0 ? (
-                        <div className="summary-content">
-                            <div className="meta">
-                                <h1 className="school bold">
-                                    { metaData.schoolName }
-                                </h1>
-                                <h2 className="subject bold">
-                                    Course/Subject: { metaData.subject }
-                                </h2>
-                                <p className="meta-txt class bold">
-                                    Class: { metaData.class }
-                                </p>
-                                <p className="meta-txt bold">
-                                    Test Title: { responseData.title }
-                                </p>
-                                <p className="meta-txt bold">
-                                    Academic Year: { metaData.accademicYear }
-                                </p>
-                                <p className="meta-txt date">
-                                    <i className="fas fa-calendar"></i>
-                                    {data.moment(metaData.reportDate).format("ll")}
-                                </p>
+                <div id='printableDoc'>
+                    {
+                        printState === 'printing' ? (
+                            <div className="banner">
+                                <div className="banner-content">
+                                    <div className="img-wrapper">
+                                        <img src={logo} alt="Preptime analyser logo" />
+                                    </div>
+                                    <div className="banner-text">
+                                        <h1>PrepTime Analysis</h1>
+                                        <h3>Test Summary Report</h3>
+                                        <h3>Version 1.0</h3>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="max-min">
-                                <div className="min-max-flex">
-                                    <div className="minmax-blk max">
+                        ) : null
+                    }
+                    {
+                        responses.length > 0 ? (
+                            <div className="summary-content">
+                                <div className="meta">
+                                    <h1 className="school bold">
+                                        { metaData.schoolName }
+                                    </h1>
+                                    <h2 className="subject bold">
+                                        Course/Subject: { metaData.subject }
+                                    </h2>
+                                    <p className="meta-txt class bold">
+                                        Class: { metaData.class }
+                                    </p>
+                                    <p className="meta-txt bold">
+                                        Test Title: { responseData.title }
+                                    </p>
+                                    <p className="meta-txt bold">
+                                        Academic Year: { metaData.accademicYear }
+                                    </p>
+                                    <p className="meta-txt date">
+                                        <i className="fas fa-calendar"></i>
+                                        {data.moment(metaData.reportDate).format("ll")}
+                                    </p>
+                                </div>
+                                <div className="max-min">
+                                    <div className="min-max-flex">
+                                        <div className="minmax-blk max">
+                                            <div className="minmax-txt">
+                                                <h4>MAXIMUM MARK</h4>
+                                                <p className="bold">The maximum mark was scored by {responses[0]?.name}</p>
+                                            </div>
+                                            <h2 className="score">{responses[0]?.score} </h2>
+                                        </div>
+                                        <div className="minmax-blk min">
                                         <div className="minmax-txt">
-                                            <h4>MAXIMUM MARK</h4>
-                                            <p className="bold">The maximum mark was scored by {responses[0]?.name}</p>
+                                                <h4>MINIMUM MARK</h4>
+                                                <p className="bold">The minimum mark was scored by {responses[responses.length - 1]?.name}</p>
+                                            </div>
+                                            <h2 className="score">{responses[responses.length - 1]?.score} </h2>
                                         </div>
-                                        <h2 className="score">{responses[0]?.score} </h2>
-                                    </div>
-                                    <div className="minmax-blk min">
-                                    <div className="minmax-txt">
-                                            <h4>MINIMUM MARK</h4>
-                                            <p className="bold">The minimum mark was scored by {responses[responses.length - 1]?.name}</p>
-                                        </div>
-                                        <h2 className="score">{responses[responses.length - 1]?.score} </h2>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="sect-title">
-                                <h1>Analysis of Answers</h1>
-                                <Table tableId="table-aa" columns={data.headers}  rows={analysisTable} printState={printState} />
-                            </div>
-                            <div className="sect-title" id='score-summary'>
-                                <h1>Summary of Scores</h1>
-                                <Table tableId="table-sos" columns={data.summaryHeaders}  rows={responses} printState={printState} />
-                            </div>
-                            <div className="sect-title">
-                                <h1>Graph of Correct Scores</h1>
-                                <div className="info">
-                                    <i className="fas fa-info-circle"></i>
-                                    <span>This graph shows the number of times a particular question received the correct response.</span>
+                                <div className="sect-title">
+                                    <h1>Analysis of Answers</h1>
+                                    <Table tableId="table-aa" columns={data.headers}  rows={analysisTable} printState={printState} />
                                 </div>
-                                <Line data={datacollection} options={chartOptions} />
-                            </div>
-                            {
-                                loadedMissedQuestions ? <FrequentlyMissed missed={missedQuestions} /> : null
+                                <div className="sect-title" id='score-summary'>
+                                    <h1>Summary of Scores</h1>
+                                    <Table tableId="table-sos" columns={data.summaryHeaders}  rows={responses} printState={printState} />
+                                </div>
+                                <div className="sect-title">
+                                    <h1>Graph of Correct Scores</h1>
+                                    <div className="info">
+                                        <i className="fas fa-info-circle"></i>
+                                        <span>This graph shows the number of times a particular question received the correct response.</span>
+                                    </div>
+                                    <Line data={datacollection} options={chartOptions} />
+                                </div>
+                                {
+                                    loadedMissedQuestions ? <FrequentlyMissed missed={missedQuestions} /> : null
 
-                            }
+                                }
+                            </div>
+                        ) : (
+                            <div className="load-container">
+                                <Loader size={10} show={isLoading} />
+                            </div>
+                        )
+                    }
+                    <div className="foot-note">
+                        <div className="foot-content">
+                            <p>Data source to this report is neither created nor endorsed by SWPH.</p>
+                            <p>&copy; 2022 -  <b>Scribble Works</b></p>
                         </div>
-                    ) : (
-                        <div className="load-container">
-                            <Loader size={10} show={isLoading} />
-                        </div>
-                    )
-                }
-                <div className="foot-note">
-                    <div className="foot-content">
-                        <p>Data source to this report is neither created nor endorsed by SWPH.</p>
-                        <p>&copy; 2022 -  <b>Scribble Works</b></p>
                     </div>
                 </div>
             </div>
