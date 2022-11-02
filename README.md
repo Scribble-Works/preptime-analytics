@@ -106,7 +106,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Additional Features
 
-##### Integration with Google Forms and Sheets
+### Integration with Google Forms and Sheets
 
 For use with Google Forms and Sheets, you would have to create a project on Google Cloud Platform (assuming you already have a google account and you're signed in). See the [documentation](https://cloud.google.com/resource-manager/docs/creating-managing-projects) on how to create a Google Cloud Project. After creating the Google Cloud project, navigate to the APIs & Services page and enable the following APIs;
 
