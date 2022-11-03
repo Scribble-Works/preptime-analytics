@@ -1,24 +1,19 @@
 # Preptime Analytics
 
-Frontend React application for the Preptime Analyzer.
+## Description
+
+PrepTime Analytics is a Scribble Works application that summarises test results and performs item analysis for quizzes. PrepTime Analytics also serves as a functionality enhancement for Google Forms and Sheets to analyze and report the results of assessments in a meaningful way.
+
+## Features
+
+* The application allows users to upload their questions and responses data files in csv or excel format. Template files for questions and responses are provided in csv and excel to guide the user in preparing their data files.
+* Download of report after the analysis has been generated.
 
 ## Getting Started
 
 This repository contains the resources and instructions that will get you a copy of the project up and running on your local machine for development and testing purposes, and also with notes on how to deploy the project on a live system.
 
 ### Prerequisites
-
-This project uses Google APIs and therefore requires you to create a project on Google Cloud Platform (assuming you already have a google account and you're signed in). See the [documentation](https://cloud.google.com/resource-manager/docs/creating-managing-projects) on how to create a Google Cloud Project. After creating the Google Cloud project, navigate to the APIs & Services page and enable the following APIs;
-
-* Apps Script API
-* Gmail API
-* Google Drive API
-* Google Forms API
-* Google Sheets API
-
-A step by step guide on how to enable Google APIs can be found [here](https://support.google.com/googleapi/answer/6158841?hl=en). The next thing to do now is to create your access credentials which are; API Keys, OAuth client ID, and a Service account. On the same APIs & Services page, click on "Credentials" on the sidebar menu on the left. This serves you a page where you can create new credentials by clicking on the "Create Credentials" button on the top left of the page. You can see the guide on how to create these credentials [here](https://developers.google.com/workspace/guides/create-credentials).
-
-In addition to that, you will also need to create a new [Google App Script project](https://script.google.com) and copy the code in this [App script project](https://script.google.com/home/projects/1QShlUGMc11-f3q_ADp00WRILV4XEyV9YgB1FFIC_ZV1RNLy98_uMtqxD/edit) which is used by the original Preptime project. Link your Google cloud project to the App script project by following this [guide](https://developers.google.com/apps-script/guides/cloud-platform-projects).
 
 To get the project started, there are some tools you need to install on your local machine. The list of tools you need to install have been provided with a guide on how to install these tools.
 
@@ -82,9 +77,6 @@ $ yarn install        // or simply "yarn"
 You will then have to create your environment variables in a .env file with the following variables:
 
 * REACT_APP_STRAPI_BASE_URI - URL for the CMS (https://admin.preptimeanalytics.com).
-* REACT_APP_GOOGLE_API_KEY - Your Google API Key
-* REACT_APP_GOOGLE_CLIENT_ID - Your Google client_id
-* REACT_APP_SCRIPT_URL - Your Google Script deployment URL
 * REACT_APP_API_URL - Base URL for the API endpoints (this refers to the deployed preptime [backend application](https://github.com/Scribble-Works/preptime-api).)
 
 Now start the development server with the following command:
@@ -93,7 +85,7 @@ Now start the development server with the following command:
 $ yarn start
 ```
 
-## Available Scripts
+### Available Scripts
 In the project directory, you can run:
 
 ##### `yarn start`
@@ -104,7 +96,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-#### `yarn test`
+##### `yarn test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
@@ -118,6 +110,30 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+## Additional Features
+
+PrepTime Analytics has also been integrated with Google Forms and Sheet to make it easier for users with Google accounts to analyze thier Google Forms quizzes.
+
+### Integration with Google Forms and Sheets
+
+For use with Google Forms and Sheets, you would have to create a project on Google Cloud Platform (assuming you already have a google account and you're signed in). See the [documentation](https://cloud.google.com/resource-manager/docs/creating-managing-projects) on how to create a Google Cloud Project. After creating the Google Cloud project, navigate to the APIs & Services page and enable the following APIs;
+
+* Apps Script API
+* Gmail API
+* Google Drive API
+* Google Forms API
+* Google Sheets API
+
+A step by step guide on how to enable Google APIs can be found [here](https://support.google.com/googleapi/answer/6158841?hl=en). The next thing to do now is to create your access credentials which are; API Keys, OAuth client ID, and a Service account. On the same APIs & Services page, click on "Credentials" on the sidebar menu on the left. This serves you a page where you can create new credentials by clicking on the "Create Credentials" button on the top left of the page. You can see the guide on how to create these credentials [here](https://developers.google.com/workspace/guides/create-credentials).
+
+In addition to that, you will also need to create a new [Google App Script project](https://script.google.com) and copy the code in this [App script project](https://script.google.com/home/projects/1QShlUGMc11-f3q_ADp00WRILV4XEyV9YgB1FFIC_ZV1RNLy98_uMtqxD/edit) which is used by the original Preptime project. Link your Google cloud project to the App script project by following this [guide](https://developers.google.com/apps-script/guides/cloud-platform-projects).
+
+Next, add the following environment variables to the `.env` file:
+
+* REACT_APP_GOOGLE_API_KEY - Your Google API Key
+* REACT_APP_GOOGLE_CLIENT_ID - Your Google client_id
+* REACT_APP_SCRIPT_URL - Your Google Script deployment URL
 
 ## Deployment
 
