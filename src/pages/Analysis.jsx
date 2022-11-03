@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
+import html2canvas from 'html2canvas';
 import Table from '../components/Table';
 import Loader from '../components/Loader'
 import logo from '../assets/logos/PrepTime_analyser_logo.png';
@@ -17,6 +18,8 @@ import {
     Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { jsPDF } from 'jspdf';
+import { saveAs } from 'file-saver';
 import printJS from 'print-js';
 
 ChartJS.register(
@@ -308,14 +311,42 @@ export default function Analysis() {
     }, [questions, responses])
 
     const printReport = _ => {
-        alert('Cannot print report now!')
-        // setPrintState('printing');
+        setPrintState('printing');
     };
 
     useEffect(_ => {
         if (printState === 'printing') {
             setTimeout(_ => {
-                printJS(printOptions)
+                const reportUI = document.getElementById('printableDoc');
+                html2canvas(reportUI, {
+                    windowWidth: 1200,
+                    width: 1200
+                }).then(canvas => {
+                    setPrintState('done')
+                    const imageData = canvas.toDataURL('image/jpeg', 1.0);
+                    const image = new Image();
+                    image.src = imageData;
+                    printJS({
+                        printable: image,
+                        type: 'html'
+                    })
+                })
+                // fetch('http://localhost:5000/generatepdf/create', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({
+                //         reportContent: reportUI
+                //     })
+                // })
+                // .then(res => res.text())
+                // .then(async data => {
+                //     console.log(data)
+                //     let pdf = await (await fetch(`http://localhost:5000/generatepdf/download/${data}`)).arrayBuffer();
+                //     let file = new Blob([pdf], { type: 'application/pdf'});
+                //     saveAs(file, data)
+                // })
+                // .catch(err => console.log(err))
+                // console.log(reportUI.innerHTML)
             }, 500)
         }
     }, [printState])
@@ -366,18 +397,18 @@ export default function Analysis() {
                 <div id='printableDoc'>
                     {
                         printState === 'printing' ? (
-                            <div className="banner">
-                                <div className="banner-content">
-                                    <div className="img-wrapper">
-                                        <img src={logo} alt="Preptime analyser logo" />
-                                    </div>
-                                    <div className="banner-text">
-                                        <h1>PrepTime Analysis</h1>
-                                        <h3>Test Summary Report</h3>
-                                        <h3>Version 1.0</h3>
+                                <div className="banner">
+                                    <div className="banner-content">
+                                        <div className="img-wrapper">
+                                            <img src={logo} alt="Preptime analyser logo" />
+                                        </div>
+                                        <div className="banner-text">
+                                            <h1>PrepTime Analysis</h1>
+                                            <h3>Test Summary Report</h3>
+                                            <h3>Version 1.0</h3>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         ) : null
                     }
                     {
@@ -442,6 +473,7 @@ export default function Analysis() {
                                     loadedMissedQuestions ? <FrequentlyMissed missed={missedQuestions} /> : null
 
                                 }
+                                <img id="pdfImg" />
                             </div>
                         ) : (
                             <div className="load-container">

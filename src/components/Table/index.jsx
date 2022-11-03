@@ -123,10 +123,14 @@ export default function Table({
                                                     columns.map((col, index) => (
                                                         <th key={`col${index}`} onClick={_ => sortTable(`col-${index}`, col.accessor)} data-sort="" id={`col-${index}`}>
                                                             <span>{col.text}</span>
-                                                            <span className="sort-ctrls">
-                                                                <i className="fas fa-sort-up"></i>
-                                                                <i className="fas fa-sort-down"></i>
-                                                            </span>
+                                                            {
+                                                                ['none', 'done'].includes(printState) ? (
+                                                                    <span className="sort-ctrls">
+                                                                        <i className="fas fa-sort-up"></i>
+                                                                        <i className="fas fa-sort-down"></i>
+                                                                    </span>
+                                                                ) : null
+                                                            }
                                                         </th>
                                                     ))
                                                 }
@@ -151,29 +155,33 @@ export default function Table({
                                 </tbody>
                             </table>
                         </div>
-                        <div className="tb-controls">
-                            <div className="rpp">
-                                <p className="label">Rows per page:</p>
-                                <select name="rows-number" id="rows-number" defaultValue={10}  onChange={changeRows}>
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value={rows.length}>All</option>
-                                </select>
-                            </div>
-                            <p className="count-indicator">
-                                { `${((step * currentDisplay) - step) +  1}-${step * currentDisplay} of ${rows.length}`}
-                            </p>
-                            <div className="pg-controls">
-                                <button onClick={prevDisplay}>
-                                    <i className="fas fa-chevron-left"></i>
-                                </button>
-                                <button onClick={nextDisplay}>
-                                    <i className="fas fa-chevron-right"></i>
-                                </button>
-                            </div>
-                        </div>
+                        {
+                            ['none', 'done'].includes(printState) ? (
+                                <div className="tb-controls">
+                                    <div className="rpp">
+                                        <p className="label">Rows per page:</p>
+                                        <select name="rows-number" id="rows-number" defaultValue={10}  onChange={changeRows}>
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value={rows.length}>All</option>
+                                        </select>
+                                    </div>
+                                    <p className="count-indicator">
+                                        { `${((step * currentDisplay) - step) +  1}-${step * currentDisplay} of ${rows.length}`}
+                                    </p>
+                                    <div className="pg-controls">
+                                        <button onClick={prevDisplay}>
+                                            <i className="fas fa-chevron-left"></i>
+                                        </button>
+                                        <button onClick={nextDisplay}>
+                                            <i className="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            ) : null
+                        }
                     </>
                 ) : (
                     <div className="no-data">

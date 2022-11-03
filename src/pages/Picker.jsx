@@ -8,7 +8,7 @@ import readXlsxFile from 'read-excel-file'
 
 export default function Picker() {
 
-    const [uploadOption, setUploadOption] = useState('google');
+    const [uploadOption, setUploadOption] = useState('local');
     const [isAnalysing, setAnalysing] = useState(false);
     const [analysisDone, setAnalysisDone] = useState(false);
     const [tempAttachments, setTempAttachments] = useState([]);
@@ -439,7 +439,7 @@ export default function Picker() {
     const restart = _ => {
         setAnalysing(false);
         setAnalysisDone(false);
-        setUploadOption('google');
+        setUploadOption('local');
         setTempAttachments([]);
         setQuestionsDataFile('');
         setResponsesDataFile('');
@@ -581,27 +581,6 @@ export default function Picker() {
                         !isAnalysing && !analysisDone ? (
                             <div className="picker-content">
                                 <ul className="picker-options">
-                                    <li className="w-gdrive">
-                                        <input type="checkbox" id='gDrive' className='upload-option' value="google" checked={uploadOption === 'google'} onChange={changeOption} />
-                                        <label htmlFor="gDrive" className='checklabel'>
-                                            <span className="picker-title bold">Upload with Google Drive</span>
-                                        </label>
-                                        <div className="g-upload-content upl-cnt">
-                                            <p className="font-norm">Before we begin, please make sure you have owevership or editor access to both the Google Form and it's corresponding Google Sheet.</p>
-                                            <div className="upload-step flex flex-col align-center">
-                                                <h2 className="step-title">Step 1: Pick a Quiz Responses File</h2>
-                                                <button className="gdrive-upload" onClick={driveIconClicked}>
-                                                    <img src={googleLogo} alt="google drive icon" width="25" height="25" />
-                                                    <span>Sign in with Google</span>
-                                                </button>
-                                                {
-                                                    tempAttachments.length > 0 && !isAnalysing ?
-                                                    <AttachmentList tempAttachments={tempAttachments} clearFunc={removeAttachments} /> : null
-
-                                                }
-                                            </div>
-                                        </div>
-                                    </li>
                                     <li className="local-upload">
                                         <input type="checkbox" id="lDrive" className="upload-option" value="local" checked={uploadOption === 'local'} onChange={changeOption} />
                                         <label htmlFor="lDrive" className='checklabel for-ldrive'>
@@ -648,6 +627,27 @@ export default function Picker() {
                                                         ) : null
                                                     }
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li className="w-gdrive">
+                                        <input type="checkbox" id='gDrive' className='upload-option' value="google" checked={uploadOption === 'google'} onChange={changeOption} />
+                                        <label htmlFor="gDrive" className='checklabel'>
+                                            <span className="picker-title bold">Upload with Google Drive</span>
+                                        </label>
+                                        <div className="g-upload-content upl-cnt">
+                                            <p className="font-norm">Before we begin, please make sure you have owevership or editor access to both the Google Form and it's corresponding Google Sheet.</p>
+                                            <div className="upload-step flex flex-col align-center">
+                                                <h2 className="step-title">Step 1: Pick a Quiz Responses File</h2>
+                                                <button className="gdrive-upload" onClick={driveIconClicked}>
+                                                    <img src={googleLogo} alt="google drive icon" width="25" height="25" />
+                                                    <span>Sign in with Google</span>
+                                                </button>
+                                                {
+                                                    tempAttachments.length > 0 && !isAnalysing ?
+                                                    <AttachmentList tempAttachments={tempAttachments} clearFunc={removeAttachments} /> : null
+
+                                                }
                                             </div>
                                         </div>
                                     </li>

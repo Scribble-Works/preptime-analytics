@@ -427,7 +427,7 @@ ul.temp-list {
 }
 
 .local-upload {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .l-upload-content {
@@ -905,7 +905,7 @@ button.run:active {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 80px;
 }
 
 .report .school,
@@ -924,7 +924,7 @@ button.run:active {
 .max-min {
     width: 100%;
     height: max-content;
-    margin-bottom: 30px;
+    margin-block: 30px;
 }
 
 .min-max-flex {
@@ -1040,8 +1040,9 @@ button.run:active {
 
 .banner {
     width: min(100% - 20px, 1100px);
-    margin: 0 auto 100px;
+    margin: 0 auto 70px;
     border: 1px solid rgba(0,0,0,.2);
+    /* display: none; */
 }
 
 .banner-content {
@@ -1089,7 +1090,7 @@ button.run:active {
     }
 
     .banner {
-        margin-bottom: 150px;
+        margin-bottom: 70px;
     }
 
     .banner .img-wrapper {
@@ -1170,10 +1171,6 @@ button.run:active {
         margin-bottom: 40px;
     }
 
-    .local-upload {
-        margin-bottom: 60px;
-    }
-
     .upload-blk {
         padding: 40px;
     }
@@ -1234,10 +1231,6 @@ button.run:active {
     .header-text h1,
     .header-text h3 {
         font-size: 20px;
-    }
-
-    .banner {
-        margin-bottom: 150px;
     }
 
     .banner .img-wrapper {

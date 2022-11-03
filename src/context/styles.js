@@ -1,74 +1,12 @@
 export const reportStyles = `
-/* REPORT PAGE STYLING */
-.load-container {
-    width: 100%;
-    height: min(87vh, 645px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .report,
 .report-content {
     width: 100%;
     height: max-content;
 }
 
-.header-bar {
-    width: 100%;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #fff;
-    background-image: linear-gradient(to top right, #fc260099, #ff3f5f);
-    position: relative;
-    border-radius: 0px 0px 40px 40px;
-    box-shadow: 5px 5px 10px #fc260099;
-    margin-bottom: 40px;
-}
-
-.header-bar::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(https://picsum.photos/1920/1080?random);
-    background-size: cover;
-    border-radius: 0px 0px 40px 40px;
-    z-index: -1;
-}
-
-.header-text {
-    text-align: center;
-    margin-bottom: 15px;
-}
-
 .bold {
     font-weight: bold;
-}
-
-.header-text h1 {
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.header-text h3 {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.hd-action {
-    font-size: 16px;
-    display: inline-block;
-    margin: 0 10px;
-    cursor: pointer;
-}
-
-.hd-action:first-of-type .fas {
-    margin-right: 5px;
 }
 
 .summary-content {
@@ -81,16 +19,16 @@ export const reportStyles = `
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 80px;
 }
 
 .report .school,
 .report .subject {
-    font-size: 20px;
+    font-size: 40px;
 }
 
 .meta-txt {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .date .fas {
@@ -100,13 +38,13 @@ export const reportStyles = `
 .max-min {
     width: 100%;
     height: max-content;
-    margin-bottom: 30px;
+    margin-block: 30px;
 }
 
 .min-max-flex {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     width: min(100%, 1100px);
     margin-inline: auto;
 }
@@ -123,7 +61,8 @@ export const reportStyles = `
 
 .max {
     background: #385F73;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    margin-right: 30px;
 }
 
 .min {
@@ -136,7 +75,7 @@ export const reportStyles = `
 
 .minmax-txt h4 {
     color: #fff;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .minmax-txt p {
@@ -145,7 +84,7 @@ export const reportStyles = `
 
 .score {
     font-weight: bold;
-    font-size: 35px;
+    font-size: 50px;
     color: #fff;
 }
 
@@ -165,7 +104,7 @@ export const reportStyles = `
 .missed-ques {
     padding: 10px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     color: #fff;
     background: #ff3f5f;
     border-radius: 5px;
@@ -178,7 +117,7 @@ export const reportStyles = `
 .pct {
     font-size: 18px;
     align-self: flex-end;
-    margin-top: 5px;
+    white-space: nowrap;
 }
 
 .foot-note {
@@ -191,17 +130,17 @@ export const reportStyles = `
 .foot-content {
     width: min(100% - 20px, 1000px);
     margin-inline: auto;
-    font-size: 14px;
+    font-size: 15px;
     text-align: center;
 }
 
 .info {
     width: min(80%, 500px);
     margin-inline: auto;
-    text-align: center;
+    text-align: left;
     display: flex;
     align-items: center;
-    font-size: 11px;
+    font-size: 12px;
     margin-bottom: 25px;
     padding: 10px 15px;
     border-radius: 8px;
@@ -216,7 +155,7 @@ export const reportStyles = `
 
 .banner {
     width: min(100% - 20px, 1100px);
-    margin: 0 auto 100px;
+    margin: 0 auto 150px;
     border: 1px solid rgba(0,0,0,.2);
 }
 
@@ -227,8 +166,8 @@ export const reportStyles = `
 }
 
 .banner .img-wrapper {
-    width: min(100%, 50px);
-    height: 50px;
+    width: min(100%, 100px);
+    height: 100px;
     align-self: center;
 }
 
@@ -247,111 +186,57 @@ export const reportStyles = `
     text-transform: uppercase;
 }
 
-@media screen and (min-width: 600px) {
-
-    .banner {
-        margin-bottom: 150px;
-    }
-
-    .banner .img-wrapper {
-        width: min(100%, 80px);
-        height: 80px;
-    }
-
-    .banner-text h1 {
-        font-size: 25px;
-    }
-
-    .banner-text h3 {
-        font-size: 18px;
-    }
+.banner-text h1 {
+    font-size: 38px;
 }
 
-@media screen and (min-width: 768px) {
-    .banner {
-        margin-bottom: 150px;
-    }
-
-    .banner .img-wrapper {
-        width: min(100%, 100px);
-        height: 100px;
-    }
-
-    .banner-text h1 {
-        font-size: 30px;
-    }
-
-    .banner-text h3 {
-        font-size: 20px;
-    }
-
-    .report .school,
-    .report .subject {
-        font-size: 30px;
-    }
-
-    .meta-txt {
-        font-size: 18px;
-    }
-
-    .min-max-flex {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .max {
-        margin-bottom: 0;
-        margin-right: 30px;
-    }
-
-    .score {
-        font-size: 50px;
-    }
-
-    .minmax-txt h4 {
-        font-size: 18px;
-    }
-
-    .missed-ques {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .ques {
-        margin-right: 20px;
-    }
-
-    .pct {
-        margin-top: 0;
-        white-space: nowrap;
-    }
-
-    .info {
-        text-align: left;
-        font-size: 12px;
-    }
+.banner-text h3 {
+    font-size: 24px;
 }
 
-@media screen and (min-width: 1200px) {
-    .banner-text h1 {
-        font-size: 38px;
-    }
+.main-tb-container {
+    width: 100%;
+    height: max-content;
+    margin-inline: auto;
+    padding: 0px 5px 0px;
+    border-radius: 8px;
+    box-shadow: 5px 5px 25px rgba(0,0,0,.1);
+}
 
-    .banner-text h3 {
-        font-size: 24px;
-    }
+.table-wrapper {
+    height: 100%;
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 8px;
+}
 
-    .report .school,
-    .report .subject {
-        font-size: 40px;
-    }
+.table {
+    height: max-content;
+    width: 100%;
+}
 
-    .meta-txt {
-        font-size: 20px;
-    }
+th {
+    color: #3c3c3c;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+}
 
-    .foot-content {
-        font-size: 15px;
-    }
+th, td {
+    padding: 10px;
+    font-size: 14px;
+}
+
+tr {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    white-space: nowrap;
+}
+
+.sort-ctrls {
+    display: none;
+}
+
+.tb-controls {
+    display: none;
 }
 `
