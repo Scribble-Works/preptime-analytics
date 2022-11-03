@@ -143,6 +143,8 @@ The original project is deployed and hosted on Amazon Web Service. But developer
 
 * [React](https://reactjs.org/) - The frontend framework used
 * [Yarn](https://yarnpkg.com/) - Dependencies and package management
+* [Express.js](https://expressjs.com/) - Backend framework for Node.js
+* [MongoDB](https://www.mongodb.com/docs/manual/tutorial/getting-started/) - Non-relational database management system
 
 ## Contributing
 
