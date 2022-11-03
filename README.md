@@ -1,6 +1,13 @@
 # Preptime Analytics
 
+## Description
+
 PrepTime Analytics is a Scribble Works application that summarises test results and performs item analysis for quizzes. PrepTime Analytics also serves as a functionality enhancement for Google Forms and Sheets to analyze and report the results of assessments in a meaningful way.
+
+## Features
+
+* The application allows users to upload their questions and responses data files in csv or excel format. Template files for questions and responses are provided in csv and excel to guide the user in preparing their data files.
+* Download of report after the analysis has been generated.
 
 ## Getting Started
 
@@ -78,7 +85,7 @@ Now start the development server with the following command:
 $ yarn start
 ```
 
-## Available Scripts
+### Available Scripts
 In the project directory, you can run:
 
 ##### `yarn start`
@@ -105,6 +112,8 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ## Additional Features
+
+PrepTime Analytics has also been integrated with Google Forms and Sheet to make it easier for users with Google accounts to analyze thier Google Forms quizzes.
 
 ### Integration with Google Forms and Sheets
 
