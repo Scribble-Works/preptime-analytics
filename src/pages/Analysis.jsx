@@ -428,7 +428,7 @@ export default function Analysis() {
                                         Test Title: { responseData.title }
                                     </p>
                                     <p className="meta-txt bold">
-                                        Academic Year: { metaData.accademicYear }
+                                        Academic Year: { metaData.academicYear }
                                     </p>
                                     <p className="meta-txt date">
                                         <i className="fas fa-calendar"></i>
