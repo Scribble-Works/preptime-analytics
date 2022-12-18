@@ -213,6 +213,7 @@ export default function Picker() {
             };
 
             // const url = 'http://localhost:5000';
+            // console.log('Sending data:', req)
             fetch(`${url}/api/scribbleworks-demoresponses`, {
                 method: 'POST',
                 headers: {
@@ -288,7 +289,8 @@ export default function Picker() {
         const firstLine = dataLineArray[0];
         let header = firstLine.includes('Index Number:') ? 
         firstLine.split(',').slice(0,3) : firstLine.split(',').slice(0,2);
-        header = firstLine.includes('Index Number:') ? header : [header[0], 'Index Number:', header[1]];
+        header = firstLine.includes('Index Number:') ? 
+        [header[2], header[0], header[1]] : [header[1], header[0], 'Index Number:'];
         // console.log(header)
 
         let dataArray = dataLineArray.slice(1, dataLineArray.length).map(line => {
@@ -297,10 +299,11 @@ export default function Picker() {
             if (firstLine.includes('Index Number:')) {
                 row[2] = row[2].indexOf('/') >= 0 ? 
                 Number(row[2].split('/')[0].trim()) : Number(row[2].trim());
+                row = [row[2], row[0], row[1], ...row.slice(3)];
             } else {
                 row[1] = row[1].indexOf('/') >= 0 ? 
                 Number(row[1].split('/')[0].trim()) : Number(row[1].trim());
-                row = [row[0], 'nan', ...row.slice(1)];
+                row = [row[1], row[0], 'nan', ...row.slice(2)];
             }
 
             row.unshift(new Date().toISOString())
@@ -340,26 +343,24 @@ export default function Picker() {
     const parseExcelResponseData = data => {
         const firstLine = data[0];
         const header = firstLine.includes('Index Number:') ? 
-        ['Timestamp', ...data[0]] : 
-        ['Timestamp', firstLine[0], 'Index Number:', ...firstLine.slice(1)];
+        ['Timestamp', firstLine[2], firstLine[0], firstLine[1], ...firstLine.slice(3)] : 
+        ['Timestamp', firstLine[1] ,firstLine[0], 'Index Number:', ...firstLine.slice(2)];
 
+        // console.log(data)
         const newData = data.slice(1).map(row => {
-            let newRow = [ ...row ];
+            let newRow= [ ...row ];
             if (firstLine.includes('Index Number:')) {
-                const isNumber = typeof newRow[2] == 'number';
-                newRow[2] = !isNumber && newRow[2].indexOf('/') >= 0 ? 
-                Number(newRow[2].split('/')[0].trim()) : 
-                !isNumber && newRow[2].indexOf('/') < 0 ? 
-                Number(newRow[2].trim()) :  newRow[2];
-                newRow = [new Date().toISOString(), ...newRow];
+                newRow = [new Date().toISOString(), newRow[2], newRow[0], newRow[1], ...newRow.slice(3), 'nan'];
             } else {
-                const isNumber = typeof newRow[1] == 'number';
-                newRow[1] = !isNumber && newRow[1].indexOf('/') >= 0 ? 
-                Number(newRow[1].split('/')[0].trim()) : 
-                !isNumber && newRow[1].indexOf('/') < 0 ? 
-                Number(newRow[1].trim()) :  newRow[1];
-                newRow = [new Date().toISOString(), newRow[0], 'nan', ...newRow.slice(1)];
+                newRow = [new Date().toISOString(), newRow[1], newRow[0], 'nan', ...newRow.slice(2), 'nan'];
             }
+
+            const isNumber = typeof newRow[1] == 'number';
+            newRow[1] = !isNumber && newRow[1].indexOf('/') >= 0 ? 
+            Number(newRow[1].split('/')[0].trim()) : 
+            !isNumber && newRow[1].indexOf('/') < 0 ? 
+            Number(newRow[1].trim()) :  newRow[1];
+
             return newRow;
         });
 

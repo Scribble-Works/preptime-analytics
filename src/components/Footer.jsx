@@ -50,7 +50,7 @@ export default function Footer() {
 
             <div className="flex space-x-10">
                 <a
-                href="https://www.youtube.com/embed/FOgfK-W1l14"
+                href="https://www.youtube.com/watch?v=6BfDb536pic"
                 target={"_blank"}
                 rel="noreferrer"
                 >
